@@ -1,0 +1,68 @@
+html,body{
+	width:100%;
+	margin:0;
+	height:100%;
+}
+
+.separador-tabla {
+	background-color:#fff;
+	height:10px;
+}
+
+.tabla-azul tbody th{
+	background-color:#05405F;
+	color: #fff;
+}
+
+.tabla-azul tbody td{
+	background-color:#EBF2FA;
+	color: #000;
+}
+
+.texto-azul {
+	color: #003749;
+}
+
+.fondo-gris {
+	background-color:#EAEAEA;
+}
+
+.fondo-azul {
+	background-color:#EBF2FA;
+	background-clip: content-box;
+}
+
+.fondo-azul-oscuro {
+	background-color:#05405F;
+	background-clip: content-box;
+}
+
+.text-amarillo {
+	color:#f0a102;
+}
+
+.tabla-totales tr {
+	border-bottom: 1px solid #f0a102;
+	font-size: 20px;
+}
+
+.condiciones-pago {
+	font-size:20px;
+}
+
+.borde-amarillo {
+	border: 1px solid #f0a102;
+}
+
+.nav-header{
+	background:#087E88;
+}
+
+.iconoInput {
+color: #e8e8e8;
+font-size: 15px;
+position: absolute;
+left: 25px;
+padding-top: 10px;}
+.inputPadding {
+padding-left: 40px;}

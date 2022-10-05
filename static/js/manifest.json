@@ -1,0 +1,20 @@
+{
+	"id" : "http://localhost/panel/static/js/manifest.json",
+	"name" : "#Rodmac",
+	"short_name" : "#Rodmac",
+	"description" : "Rodmac control de calidad",
+	"background_color" : "#2B2B2B",
+	"theme_color" : "#F0DB4F",
+	"orientation" : "portrait",
+	"display" : "standalone",
+	"start_url" : "http://localhost/panel",
+	"scope" : "http://localhost/panel",
+	"lang" : "es-MX",
+	"icons": [
+		{
+		  "src": "../../img/favicon.png",
+		  "sizes": "270x270",
+		  "type": "image/png"
+		}
+	  ]
+}

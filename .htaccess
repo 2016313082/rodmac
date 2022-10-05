@@ -1,0 +1,5 @@
+RewriteEngine on
+RewriteCond $1 !^(index\.php|static|img|robots\.txt)
+RewriteCond $1 !^(manifest\.json|static|img|robots\.txt)
+RewriteCond $1 !^(sw\.js|static|img|robots\.txt)
+RewriteRule ^(.*)$ /panel/index.php/$1 [L]
