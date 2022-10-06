@@ -10,7 +10,11 @@
 		
 		public function index() {
 			if($this->session->userdata('usuario')) {
-				redirect('dashboard');
+				if($this->session->userdata('usuario')['nivel'] == 'Cliente'){
+					redirect('cliente');
+				}else{
+					redirect('dashboard');
+				}
 			}
 			else {
 				$data['datos_pagina']['titulo_pagina'] = "Iniciar sesión";
@@ -27,7 +31,13 @@
 				if($obj['activo']) {
 					if($obj['contrasenia']){
 						$_SESSION['usuario'] = $obj['usuario'];
-						redirect('dashboard');
+						//redirect('dashboard');
+						if($obj['usuario']['nivel'] == 'Cliente'){
+							redirect('cliente');
+						}else{
+							redirect('dashboard');
+						}
+						//redirect('dashboard');
 						/* $this->session->set_userdata("usuario",$obj['usuario']);
 						redirect('dashboard'); */
 					}
