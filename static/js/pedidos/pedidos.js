@@ -1,5 +1,5 @@
 var columnas = [];
-var columnas_productos = [];
+var columnas_productos = []; 
 var columnas_cantidades = [];
 var tabla_proveedores;
 var tabla_productos;
@@ -525,6 +525,7 @@ function empezar_proceso(id_pedido){
 			$('#id_proveedor').val(obj.socid);
 			$('#id_pedido').val(id_pedido);
 			tabla_productos.clear().draw();
+			console.log(obj.lines);
 			$.each(obj.lines,function(i,elemento){
 				i++;
 				var nuevaFila = tabla_productos.row.add([
@@ -749,7 +750,7 @@ function btn_calificacion(){
 function finalizar_pedido(id_pedido){
 	swal.fire({
 		'icon' : 'question',
-		'title' : 'Desea finalizar el pedido?',
+		'title' : 'Desea cambiar el pedido a inicio recibido?',
 		showDenyButton: true,
 		showCancelButton: false,
 		confirmButtonText: 'Finalizar',
@@ -774,9 +775,11 @@ function finalizar_pedido(id_pedido){
 }
 
 setInterval(function(){
-	//var id_pedido = $('#id_pedido').val();
+	var id_pedido = $('#id_pedido').val();
     $.ajax({
 		'url' : base_url + 'pedidos_proveedores/traer_status',
+		'type' : 'post',
+		'data' : {'id_pedido' : id_pedido},
 		'datatype' : 'json',
 		'success' : function(obj){
 			if(obj.espera.num_rows > 0){
@@ -785,6 +788,7 @@ setInterval(function(){
 
 			if(obj.aprobado.num_rows > 0){
 				btn_calificacion();
+				console.log(id_pedido);
 			}
 		}
 	})

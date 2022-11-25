@@ -11,7 +11,7 @@
 		}
 		
 		public function enviar_correo($correo){
-			$query = $this->db->query("SELECT id_usuario, correo, nivel, token, if(vigencia_token > now(),'si','no') as vigente FROM usuarios WHERE correo = ?", array($correo));
+			$query = $this->db->query("SELECT id_usuario, correo, nivel, token, if(vigencia_token < now(),'si','no') as vigente FROM usuarios WHERE correo = ?", array($correo));
 			if($query->num_rows() > 0){
 				$result = $query->row();
 				$obj['correo'] = true;

@@ -206,6 +206,16 @@ function accesos(id_usuario){
 				'<input type="checkbox" onchange="status_acceso('+id_usuario+',`link_configuracion`)" class="custom-control-input" id="link_configuracion">'+
 				'<label class="custom-control-label" for="link_configuracion">link_configuracion</label></div></div>';
 			}
+
+			if(obj[0].link_clientes == 1){
+				content += '<div class="col-sm-4 col-12"><div class="custom-control custom-switch">'+
+				'<input type="checkbox" onchange="status_acceso('+id_usuario+',`link_clientes`)" class="custom-control-input" id="link_clientes" checked>'+
+				'<label class="custom-control-label" for="link_clientes">link_clientes</label></div></div>';
+			}else{
+				content += '<div class="col-sm-4 col-12"><div class="custom-control custom-switch">'+
+				'<input type="checkbox" onchange="status_acceso('+id_usuario+',`link_clientes`)" class="custom-control-input" id="link_clientes">'+
+				'<label class="custom-control-label" for="link_clientes">link_clientes</label></div></div>';
+			}
 			$('#switch-acceso').html(content);
 		}
 	});

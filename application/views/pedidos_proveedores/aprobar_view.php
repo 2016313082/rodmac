@@ -52,15 +52,8 @@
 				</div>
 				<div class="modal-body">
 					<div class="container mt-5 mb-5">
-						<div class="row">
-							<input id="id_pedido" hidden>
-							<div class="col-sm-6">
-								<select class="form-control" id="almacenes"></select>
-							</div>
-							<div class="col-sm-6">
-								<button class="btn btn-success btn-block" onclick="agregar_cantidades();">Enviar datos</button>
-							</div>
-						</div>
+					<input id="id_pedido" hidden>
+						
 						<div class="d-flex justify-content-center row">
 							<div class="col-md-10" id="aprobar_evidencia">
 								
@@ -69,7 +62,9 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					
+				<div class="row" id="cambiar_status">
+							
+				</div><br>
 				</div>
 			</div>
 		</div>

@@ -85,8 +85,6 @@
 
 			/*Dropdown List Exp Date*/
 			select.list-dt {
-
-				
 				border: none;
 				outline: 0;
 				border-bottom: 1px solid #ccc;

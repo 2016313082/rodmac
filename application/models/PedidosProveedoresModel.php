@@ -1,4 +1,10 @@
-<?php
+<?php 
+/* 
+Estatus de productos 
+	 0. Inicializado
+	 1. Arpobado
+	 2. Cancelado 
+*/
 	class PedidosProveedoresModel extends CI_Model{
 		public function capturar_cantidades($cantidades, $id_pedido){
 			$query = $this->db->query("SELECT count(*) as num_row FROM productos_cantidades where id_pedido = ?",$id_pedido);
@@ -94,9 +100,9 @@
 			//return $rs->num_rows;
 		}
 
-		public function traer_status(){
+		public function traer_status($id_pedido){
 			$query['espera'] = $this->db->query("SELECT COUNT(*) as num_rows FROM pedidos_status WHERE status = 3");
-			$query['aprobado'] = $this->db->query("SELECT COUNT(*) as num_rows FROM pedidos_status WHERE status = 4");
+			$query['aprobado'] = $this->db->query("SELECT COUNT(*) as num_rows FROM pedidos_status WHERE status = 4 and id_pedido = ".$id_pedido);
 			$obj['espera'] = $query['espera']->row();
 			$obj['aprobado'] = $query['aprobado']->row();
 			return $obj;
@@ -113,6 +119,49 @@
 				$qry = $this->db->query("UPDATE pedidos_status SET fecha = now(),id_usuario = ?, status = 3 WHERE id_pedido = ?",array($this->session->userdata['usuario']['id_usuario'], $id_pedido));
 			}
 			$query = $this->db->query("INSERT INTO calificaciones_proveedores (id_pedido,id_pregunta,id_proveedor,calificacion,fecha) VALUES (?,?,?,?,now())",array($id_pedido,$id_pregunta,$id_proveedor,$calificacion));
+			if($this->db->affected_rows() > 0){
+				$obj = true;
+			}else{
+				$obj = false;
+			}
+			return $obj;
+		}
+
+		public function estatus_producto($estatus,$id,$comentario){
+			$query = $this->db->query("UPDATE productos_cantidades SET status = ?, comentario_respuesta = ? WHERE id = ?",array($estatus, $comentario ,$id));
+			if($this->db->affected_rows() > 0){
+				$obj = true;
+			}else{
+				$obj = false;
+			}
+			return $obj;
+		}
+
+		public function contar_productos($id_pedido){
+			$query = $this->db->query("SELECT count(*) AS productos FROM productos_cantidades WHERE id_pedido = ?",$id_pedido);
+			return $query->row();
+		}
+
+		public function segunda_etapa($id_pedido){
+			$query = $this->db->query("SELECT count(*) as num_rows FROM pedidos_status WHERE id_pedido = ?", $id_pedido);
+			$rs = $query->row();
+			if($rs->num_rows == 0){
+				// UPDATE 
+				$this->db->query("UPDATE pedidos_status SET fecha = now(),id_usuario = ".$this->session->userdata['usuario']['id_usuario'].", status = 5 WHERE id_pedido = ".$id_pedido);
+				if($this->db->affected_rows() > 0){
+					$obj = true;
+				}else{
+					$obj = false;
+				}
+			}else{
+				$obj = false;
+				$obj['mensaje'] = 'Este proceso ya fue iniciado';
+			}
+			return true;
+		}
+
+		public function terminar_segunda($textura,$color,$tamanio,$tiempo_maduracion,$cuidado,$etapa_madurez,$calibre,$motivo_rechazo,$empaque,$id_evidencia,$id_producto){
+			$query = $this->db->query("INSERT INTO productos_calidad (textura,color,tamanio,tiempo_maduracion,cuidado,etapa_madurez,motivo_rechazo,empaque,id_evidencia,id_producto) VALUES (?,?,?,?,?,?,?,?,?,?)",array($textura,$color,$tamanio,$tiempo_maduracion,$cuidado,$etapa_madurez,$motivo_rechazo,$empaque,$id_evidencia,$id_producto));
 			if($this->db->affected_rows() > 0){
 				$obj = true;
 			}else{
