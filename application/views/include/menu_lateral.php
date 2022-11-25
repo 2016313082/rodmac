@@ -59,10 +59,38 @@
 							<a href="<?=base_url()?>proveedores"><i class="fa fa-truck" aria-hidden="true"></i></i>Proveedores</a>
 						</li>
 					<?php } ?>
+					<?php if($this->session->usuario['link_clientes'] == 1){ ?>
 						<li class="<?= $subseccion == 'proveedores' ? 'active' : ''?>">
-							<a href="<?=base_url()?>pedidos_proveedores"><i class="fa fa-list-alt" aria-hidden="true"></i>Pedidos</a>
+							<a href="<?=base_url()?>usuarios/clientes"><i class="fa fa-user-circle" aria-hidden="true"></i>Clientes</a>
 						</li>
+					<?php } ?>
 					</ul>
+				</li>
+			<!-- 
+				Aqui empieza los li de la gestion de pedidos
+			 -->	
+
+			 <?php if($this->session->usuario['link_usuarios'] == 1 || $this->session->usuario['link_proveedores']){ ?>
+				<li>
+					<a data-toggle="collapse" href="#pedidos" role="button" aria-expanded="false" aria-controls="pedidos" class="collapsed"><i class="fa fa-cart-plus" aria-hidden="true"></i>Pedidos</a>
+				</li>
+			<?php } ?>
+			<li class="collapse <?= $seccion == 'pedidos' ? 'show' : ''?>" id="pedidos">
+				<ul class="list-unstyled components">
+					<li class="<?= $subseccion == 'proveedores' ? 'active' : ''?>">
+						<a href="<?=base_url()?>pedidos_proveedores"><i class="fa fa-truck" aria-hidden="true"></i>Proveedores</a>
+					</li>
+					<li class="<?= $subseccion == 'proveedores' ? 'active' : ''?>">
+						<a href="<?=base_url()?>pedidos_clientes"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Clientes</a>
+					</li>
+				</ul>
+			</li>
+
+			 <!-- 
+				 Aqui termina los li de la gestion de pedidos
+			  -->
+			  	<li class="<?= $seccion == 'Almacen' ? 'active' : ''?>">
+					<a href="<?=base_url()?>pedidos_proveedores/inicio_recibido"><i class="fa fa-book" aria-hidden="true"></i>Almacén</a>
 				</li>
 				<?php if($this->session->usuario['link_cuentas'] == 1 || $this->session->usuario['link_ingresos'] == 1 || $this->session->usuario['link_gastos'] == 1){ ?>
 				<li>
@@ -94,6 +122,11 @@
 						</li>
 					</ul>
 				</li>
+				<?php if($this->session->usuario['link_solicitud'] == 1){ ?>
+				<li class="<?= $seccion == 'configuracion_general' ? 'active' : ''?>">
+					<a href="<?=base_url()?>solicitudes"><i class="fa fa-address-book" aria-hidden="true"></i>Solicitudes de pedidos</a>
+				</li>
+				<?php } ?>
 				<?php if($this->session->usuario['link_configuracion'] == 1){ ?>
 				<li class="<?= $seccion == 'configuracion_general' ? 'active' : ''?>">
 					<a href="<?=base_url()?>configuracion"><i class="fa fa-cog"></i>Configuración general</a>

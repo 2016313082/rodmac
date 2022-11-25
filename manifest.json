@@ -1,10 +1,10 @@
 {
 	"id" : "http://localhost/panel/manifest.json",
-	"name" : "#Rodmac",
-	"short_name" : "#Rodmac",
+	"name" : "Calidad RODMAC",
+	"short_name" : "Calidad RODMAC",
 	"description" : "Rodmac control de calidad",
 	"background_color" : "#2B2B2B",
-	"theme_color" : "#F0DB4F",
+	"theme_color" : "#28a745",
 	"orientation" : "portrait",
 	"display" : "standalone",
 	"start_url" : "http://localhost/panel/",

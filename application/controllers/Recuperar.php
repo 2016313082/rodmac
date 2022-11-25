@@ -28,7 +28,7 @@
 				if($obj['activo']) {
 					$mail_view = $this->load->view('plantillas/mail_view',$obj,true);
 					$this->load->library('email');
-					$this->email->from('atencion@agctecnologias.com', 'Sistema AAMPERIA');
+					$this->email->from('2016313082@uteq.edu.mx', 'Sistema RODMAC');
 					$this->email->to($correo);
 					$this->email->subject('Recuperación de contraseña');
 					$this->email->message($mail_view);

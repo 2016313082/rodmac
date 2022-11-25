@@ -11,7 +11,7 @@
 		}
 		
 		public function iniciar_sesion($usuario, $contrasenia){
-			$query = $this->db->query("SELECT id_usuario, correo, contrasenia, nombre, apellido_paterno, apellido_materno, usuario, nivel, telefono, fecha_registro, link_dashboard, link_usuarios, link_proveedores, link_configuracion, link_cuentas, link_ingresos, link_gastos  FROM usuarios WHERE usuario = ?", array($usuario));
+			$query = $this->db->query("SELECT id_usuario, correo, contrasenia, nombre, apellido_paterno, apellido_materno, usuario, nivel, telefono, fecha_registro, link_dashboard, link_usuarios, link_proveedores, link_configuracion, link_cuentas, link_ingresos, link_gastos,link_menu ,link_pedidos_cliente, link_clientes, link_solicitud  FROM usuarios WHERE usuario = ?", array($usuario));
 			if($query->num_rows() > 0) {
 				$result = $query->row();
 				$obj['usuario'] = true;
@@ -39,6 +39,10 @@
 						$obj['usuario']['link_cuentas'] = $result->link_cuentas;
 						$obj['usuario']['link_ingresos'] = $result->link_ingresos;
 						$obj['usuario']['link_gastos'] = $result->link_gastos;
+						$obj['usuario']['link_menu'] = $result->link_menu;
+						$obj['usuario']['link_pedidos_cliente'] = $result->link_pedidos_cliente;
+						$obj['usuario']['link_clientes'] = $result->link_clientes;
+						$obj['usuario']['link_solicitud'] = $result->link_solicitud;
 					}else{
 						$obj['contrasenia'] = false;
 					}

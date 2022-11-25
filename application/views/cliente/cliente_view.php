@@ -17,10 +17,9 @@
 				<div class="vh-100 row m-0 text-enter align-items-center justify-content-center">
 					<form id="login-form" class="text-center" method="post" action="<?= base_url() ?>cliente/tienda">
 							<div class="form-group mt-4">
-								<button class="btn-success">Comprar</button>
-								<button class="btn-warning">Cargar excel</button>
-							</div>
-						</form>					
+								<a href="<?= base_url() ?>cliente/tienda" class="btn btn-success">Comprar</a>
+								<a href="<?= base_url() ?>cliente/cliente_excel" class="btn btn-warning">Cargar excel</a>
+							</div>				
 				</div>
 			</div>
 	</div>
